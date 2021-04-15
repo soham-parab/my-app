@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { ProductListing } from "./components/products";
+import {Wishlist} from "./components/wishlist"
+import {Cart} from "./components/cart"
+import {useState} from "react"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [route,setRoute] = useState("products")
+   return (
+      <div className="App">
+         <div className="header">
+            <h1 className="h1"> MyFeline </h1>
+         </div>
+
+         <button className = "button" onClick = {() => setRoute("products")}>Show Products</button>
+         <button className = "button"  onClick = {() => setRoute("cart")}> My Cart </button>
+         <button className = "button"  onClick = {() => setRoute("wishlist")}> My Wishlist </button>
+
+        {route === "products" && <ProductListing/>}
+        {route === "cart" && <Cart/>}
+        {route === "wishlist" && <Wishlist/>}
+
+      </div>
+   );
 }
 
 export default App;
